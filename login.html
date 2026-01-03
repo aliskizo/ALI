@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - ALI</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    background:url('Hurá  na hory.jpg') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    width:520px;
+    padding:40px;
+    background:rgba(88,145,200,.75);
+    border-radius:35px;
+    text-align:center;
+    backdrop-filter:blur(6px);
+}
+
+.login-title{
+    background:#0d6efd;
+    padding:14px;
+    border-radius:30px;
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.input-group{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px 45px 14px 18px;
+    border-radius:25px;
+    border:none;
+    outline:none;
+}
+
+.input-group i{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:18px;
+    opacity:.7;
+}
+
+.register{
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.register a{
+    text-decoration:none;
+    font-weight:600;
+    color:#000;
+}
+
+.btn{
+    width:160px;
+    padding:12px;
+    border-radius:25px;
+    border:none;
+    background:#2e2e2e;
+    color:white;
+    cursor:pointer;
+    margin:6px 0;
+}
+
+.btn.back{
+    background:#444;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="login-title">LOGIN</div>
+
+    <form onsubmit="return loginUser()">
+
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+            <i class="bi bi-eye" id="toggleEye"></i>
+        </div>
+
+        <div class="register">
+            <a href="signup.html">register account</a>
+        </div>
+
+        <button class="btn" type="submit">Confirm</button><br>
+
+        <button type="button" class="btn back"
+            onclick="window.location.href='index.html'">
+            Back
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+/* ===== SHOW / HIDE PASSWORD ===== */
+const eye = document.getElementById("toggleEye");
+const pass = document.getElementById("password");
+
+eye.onclick = () => {
+    if (pass.type === "password") {
+        pass.type = "text";
+        eye.classList.replace("bi-eye", "bi-eye-slash");
+    } else {
+        pass.type = "password";
+        eye.classList.replace("bi-eye-slash", "bi-eye");
+    }
+};
+
+/* ===== LOGIN FUNCTION ===== */
+function loginUser(){
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if(!savedUser){
+        alert("Akun belum terdaftar!");
+        return false;
+    }
+
+    if(username === savedUser.username && password === savedUser.password){
+        alert("Login berhasil!");
+        window.location.href = "index.html";
+    }else{
+        alert("Username atau password salah!");
+    }
+
+    return false;
+}
+</script>
+
+</body>
+</html>
