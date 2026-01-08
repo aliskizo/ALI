@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - ALI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== NAVBAR (JANGAN DIUBAH) ===== */
+.custom-navbar{
+    background:#66c39a;
+    padding:14px 40px;
+}
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#0b6b4f!important;
+}
+.nav-link{
+    color:#000!important;
+    font-weight:500;
+}
+.nav-link.active{
+    font-weight:700;
+}
+
+/* ===== ABOUT SECTION + BACKGROUND ===== */
+.about-section{
+    min-height:100vh;
+    padding-top:120px;
+    background:url("MOLO AW25 SKI.jpg") center/cover no-repeat;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* overlay biar teks kebaca */
+.about-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+}
+
+/* konten di atas overlay */
+.about-card{
+    position:relative;
+    width:80%;
+    background:rgba(255,255,255,.9);
+    border-radius:30px;
+    padding:60px;
+}
+
+.about-card h1{
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.about-card p{
+    line-height:1.9;
+    font-size:16px;
+}
+
+@media(max-width:768px){
+    .about-card{
+        width:90%;
+        padding:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+<div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">ALI</a>
+
+    <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+            <li class="nav-item"><a class="nav-link" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="best-seller.html">Best Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+            <li class="nav-item"><a class="nav-link" href="find-store.html">Find Store</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <a class="nav-link" href="#"><i class="bi bi-search"></i>&nbsp;Search</a>
+        <a class="nav-link" href="cart.html"><i class="bi bi-cart3"></i>&nbsp;Cart(0)</a>
+        <a class="nav-link" href="login.html"><i class="bi bi-person-circle"></i>&nbsp;Login</a>
+    </div>
+
+</div>
+</nav>
+
+<!-- ===== ABOUT CONTENT ===== -->
+<section class="about-section">
+    <div class="about-card">
+        <h1>About us</h1>
+        <p>
+            We are a business specializing in the sale of mountaineering and outdoor equipment,
+            here to support every adventure in the wild with safe, comfortable, and high-quality gear.
+            Based on a love of nature and climbing, we understand that every journey to the summit
+            requires thorough preparation.
+            <br><br>
+            Our products include carriers and mountain bags, tents and sleeping bags, outdoor jackets,
+            hiking boots, outdoor cooking equipment, and various accessories such as headlamps,
+            trekking poles, mattresses, and other safety gear.
+            <br><br>
+            For us, mountaineering is not just about reaching the summit; it is also about the process,
+            safety, and respect for nature.
+        </p>
+    </div>
+</section>
+
+</body>
+</html>

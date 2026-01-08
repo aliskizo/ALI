@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store - ALI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+    background:url('MOLO AW25 SKI (1).jpg') center/cover fixed;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(3px);
+    z-index:-1;
+}
+
+/* ===== NAVBAR (SAMA DENGAN INDEX & ABOUT) ===== */
+.custom-navbar{
+    background:linear-gradient(
+        rgba(140,210,180,.75),
+        rgba(110,190,160,.75)
+    );
+    padding:10px 25px;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+}
+
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#0b6b4f!important;
+}
+
+.nav-link{
+    color:#1f2f2a!important;
+    display:flex;
+    align-items:center;
+    font-weight:500;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    text-decoration:underline;
+}
+
+/* ===== SEARCH ===== */
+.search-box{
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+.search-input{
+    width:0;
+    opacity:0;
+    transition:.3s;
+    border-radius:20px;
+    border:none;
+    padding:6px 14px;
+    height:34px;
+}
+.search-box.active .search-input{
+    width:220px;
+    opacity:1;
+}
+.search-box .search-icon{
+    padding:0 8px;
+    cursor:pointer;
+}
+
+/* ===== PRODUCT CARD ===== */
+.product-card{
+    background:rgba(0, 90, 180, 0.45);
+    backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:30px;
+    padding:28px;
+    color:#fff;
+    text-align:center;
+    height:100%;
+}
+
+.product-img{
+    width:100%;
+    height:260px;
+    object-fit:contain;
+    transition:.35s;
+}
+
+.product-img:hover{
+    transform:translateY(-10px) scale(1.12);
+}
+
+.product-card h5{
+    font-size:20px;
+    margin-top:18px;
+}
+
+.product-card p{
+    font-size:18px;
+    font-weight:600;
+}
+
+/* ===== BUTTON ===== */
+.cart-btn,.buy-btn{
+    width:100%;
+    border-radius:24px;
+    padding:10px;
+    border:none;
+    font-size:15px;
+}
+.cart-btn{
+    background:#000;
+    color:#fff;
+}
+.buy-btn{
+    background:#fff;
+    color:#000;
+    margin-top:10px;
+    font-weight:700;
+}
+
+/* ===== EXTRA ===== */
+.extra-product{display:none;}
+
+.seeall-btn{
+    display:block;
+    margin:50px auto 90px;
+    padding:14px 50px;
+    font-size:22px;
+    border-radius:40px;
+    background:black;
+    color:white;
+    border:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+<div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">ALI</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="store.html">Store</a></li>
+            <li class="nav-item"><a class="nav-link" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="best-seller.html">Best Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+            <li class="nav-item"><a class="nav-link" href="find-store.html">Find Store</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3 me-3">
+        <div class="search-box" id="searchBox">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search product...">
+            <span class="search-icon" onclick="toggleSearch()">
+                <i class="bi bi-search"></i>
+            </span>
+        </div>
+
+        <a class="nav-link" href="cart.html">
+            <i class="bi bi-cart3"></i>&nbsp;Cart(<span id="cartCount">0</span>)
+        </a>
+
+        <a class="nav-link" href="login.html">
+            <i class="bi bi-person-circle"></i>&nbsp;Login
+        </a>
+    </div>
+</div>
+</nav>
+
+<div style="height:130px"></div>
+
+<!-- ===== PRODUCT LIST ===== -->
+<div class="container">
+    <div class="row g-5" id="productList"></div>
+    <button class="seeall-btn" onclick="toggleProducts()">See all</button>
+</div>
+
+<!-- ===== BUY MODAL ===== -->
+<div class="modal fade" id="buyModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Purchase</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong id="modalName"></strong></p>
+        <p>Price: <strong>$<span id="modalPrice"></span></strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-dark" onclick="confirmBuy()">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const products = [
+ {name:"Carabiner Set",price:12,img:"cabiner.png"},
+ {name:"Jaq Bag",price:32,img:"tas.png"},
+ {name:"Nanga Sandal",price:89,img:"sandal.png"},
+ {name:"P.S Cap",price:49,img:"topi.png"},
+ {name:"Camping Folding Chair",price:29,img:"kursi.png",extra:true},
+ {name:"Impact Vest",price:120,img:"vest.png",extra:true},
+ {name:"Ponca Thermos",price:13,img:"btol.png",extra:true},
+ {name:"Hardshell Jacket",price:129,img:"jaket.png",extra:true}
+];
+
+let selectedProduct=null;
+const list=document.getElementById("productList");
+
+function renderProducts(data){
+    list.innerHTML="";
+    data.forEach((p,i)=>{
+        list.innerHTML+=`
+        <div class="col-md-3 ${p.extra?'extra-product':''}">
+            <div class="product-card">
+                <img src="${p.img}" class="product-img">
+                <h5>${p.name}</h5>
+                <p>$${p.price}</p>
+                <button class="cart-btn" onclick="addToCart(${i})">
+                    <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+                <button class="buy-btn" onclick="openBuy(${i})">
+                    <i class="bi bi-bag-check"></i> Buy
+                </button>
+            </div>
+        </div>`;
+    });
+}
+renderProducts(products);
+
+function toggleSearch(){
+    searchBox.classList.toggle("active");
+    searchInput.focus();
+}
+
+searchInput.addEventListener("input",e=>{
+    const key=e.target.value.toLowerCase();
+    renderProducts(products.filter(p=>p.name.toLowerCase().includes(key)));
+});
+
+function addToCart(i){
+    let cart=JSON.parse(localStorage.getItem("cart"))||[];
+    cart.push(products[i]);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    updateCartCount();
+}
+
+function openBuy(i){
+    selectedProduct=products[i];
+    modalName.innerText=selectedProduct.name;
+    modalPrice.innerText=selectedProduct.price;
+    new bootstrap.Modal(buyModal).show();
+}
+
+function confirmBuy(){
+    let cart=JSON.parse(localStorage.getItem("cart"))||[];
+    cart.push(selectedProduct);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    location.href="cart.html";
+}
+
+function toggleProducts(){
+    document.querySelectorAll('.extra-product')
+    .forEach(p=>p.style.display=p.style.display==='block'?'none':'block');
+}
+
+function updateCartCount(){
+    cartCount.innerText=(JSON.parse(localStorage.getItem("cart"))||[]).length;
+}
+updateCartCount();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

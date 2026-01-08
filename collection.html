@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection - ALI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+    background:url('Master the Art of Long-Distance Winter Trekking!.jpg') center/cover fixed;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(6px);
+    z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+.custom-navbar{
+    background:linear-gradient(rgba(140,210,180,.75),rgba(110,190,160,.75));
+    padding:10px 25px;
+}
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#0b6b4f!important;
+}
+.nav-link{
+    color:#1f2f2a!important;
+}
+
+/* ===== CONTENT ===== */
+.section-title{
+    margin-top:140px;
+    text-align:center;
+    color:#fff;
+}
+
+.mosaic-grid{
+    max-width:1100px;
+    margin:60px auto 120px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:180px 260px 220px;
+    gap:35px;
+}
+
+.collection-box{
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    cursor:pointer;
+}
+.collection-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(100%);
+}
+.collection-box h3{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    letter-spacing:2px;
+}
+
+.footwear{grid-column:1;grid-row:1}
+.headwear{grid-column:1;grid-row:2}
+.jacket{grid-column:2;grid-row:1 / span 2}
+.accessories{grid-column:3;grid-row:1}
+.bottoms{grid-column:3;grid-row:2}
+.bags{grid-column:2;grid-row:3}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR LENGKAP (SAMA SEMUA PAGE) ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+<div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">ALI</a>
+
+    <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+            <li class="nav-item"><a class="nav-link active" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="best-seller.html">Best Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+            <li class="nav-item"><a class="nav-link" href="find-store.html">Find Store</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex gap-4 me-3">
+        <a class="nav-link" href="cart.html">
+            <i class="bi bi-cart3"></i>
+            Cart(<span id="cartCount">0</span>)
+        </a>
+        <a class="nav-link" href="login.html">
+            <i class="bi bi-person-circle"></i> Login
+        </a>
+    </div>
+
+</div>
+</nav>
+
+<section class="section-title">
+    <h1>FEATURED COLLECTIONS</h1>
+    <p>Dare to mix and match! check our collections to level up your fashion game</p>
+</section>
+
+<div class="mosaic-grid">
+    <div class="collection-box footwear" onclick="goToStore('footwear')">
+        <img src="lari.jpg"><h3>FOOTWEAR</h3>
+    </div>
+
+    <div class="collection-box jacket" onclick="goToStore('jacket')">
+        <img src="gaya.jpg"><h3>JACKET</h3>
+    </div>
+
+    <div class="collection-box accessories" onclick="goToStore('accessories')">
+        <img src="kepala.jpg"><h3>ACCESSORIES</h3>
+    </div>
+
+    <div class="collection-box headwear" onclick="goToStore('headwear')">
+        <img src="tangan.jpg"><h3>HEADWEAR</h3>
+    </div>
+
+    <div class="collection-box bags" onclick="goToStore('bags')">
+        <img src="badan.jpg"><h3>BAGS</h3>
+    </div>
+
+    <div class="collection-box bottoms" onclick="goToStore('bottoms')">
+        <img src="kaki.jpg"><h3>BOTTOMS</h3>
+    </div>
+</div>
+
+<script>
+function goToStore(category){
+    window.location.href = `store.html?category=${category}`;
+}
+
+function updateCartCount(){
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+}
+updateCartCount();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review - ALI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+    margin:0;
+    background:#a9a9a9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.custom-navbar{
+    background:#66c39a;
+    padding:14px 40px;
+}
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#0b6b4f!important;
+}
+.nav-link{
+    color:#000!important;
+    font-weight:500;
+}
+.nav-link.active{
+    font-weight:700;
+}
+
+/* ===== REVIEW SECTION ===== */
+.review-section{
+    min-height:100vh;
+    padding-top:120px;
+    padding-bottom:140px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.review-title{
+    font-size:36px;
+    margin-bottom:40px;
+    color:#000;
+}
+
+.review-card{
+    width:75%;
+    background:#e5e5e5;
+    border-radius:26px;
+    padding:35px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.review-item{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.user-icon{
+    width:45px;
+    height:45px;
+    background:#000;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.review-bubble{
+    background:#fff;
+    padding:14px 18px;
+    border-radius:20px;
+    max-width:80%;
+    font-size:15px;
+}
+
+/* ===== CHAT BAR BAWAH ===== */
+.chat-bar{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:70%;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.chat-input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:14px 20px;
+    border-radius:30px;
+    font-size:16px;
+}
+
+.send-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#000;
+    color:#fff;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.send-btn:hover{
+    background:#222;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .review-card{
+        width:90%;
+    }
+    .chat-bar{
+        width:90%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+<div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">ALI</a>
+
+    <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+            <li class="nav-item"><a class="nav-link" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="best-seller.html">Best Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+            <li class="nav-item"><a class="nav-link active" href="review.html">Review</a></li>
+            <li class="nav-item"><a class="nav-link" href="find-store.html">Find Store</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <a class="nav-link" href="#"><i class="bi bi-search"></i>&nbsp;Search</a>
+        <a class="nav-link" href="cart.html"><i class="bi bi-cart3"></i>&nbsp;Cart(0)</a>
+        <a class="nav-link" href="login.html"><i class="bi bi-person-circle"></i>&nbsp;Login</a>
+    </div>
+
+</div>
+</nav>
+
+<!-- ===== REVIEW CONTENT ===== -->
+<section class="review-section">
+
+    <div class="review-title">customer reviews</div>
+
+    <div class="review-card" id="reviewBox">
+        <!-- chat akan muncul di sini -->
+    </div>
+
+</section>
+
+<!-- ===== CHAT BAR ===== -->
+<div class="chat-bar">
+    <input type="text" id="chatInput" class="chat-input" placeholder="Write your review...">
+    <button class="send-btn" id="sendBtn">
+        <i class="bi bi-send-fill"></i>
+    </button>
+</div>
+
+<script>
+const input = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const reviewBox = document.getElementById("reviewBox");
+
+function sendReview(){
+    const text = input.value.trim();
+    if(text === "") return;
+
+    const reviewItem = document.createElement("div");
+    reviewItem.className = "review-item";
+
+    reviewItem.innerHTML = `
+        <div class="user-icon">
+            <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="review-bubble">${text}</div>
+    `;
+
+    reviewBox.appendChild(reviewItem);
+    input.value = "";
+    reviewBox.scrollTop = reviewBox.scrollHeight;
+}
+
+sendBtn.addEventListener("click", sendReview);
+
+input.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        sendReview();
+    }
+});
+</script>
+
+</body>
+</html>

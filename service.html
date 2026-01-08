@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service - ALI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+    margin:0;
+    font-family: Georgia, serif;
+    background:#000;
+}
+
+/* ===== NAVBAR ===== */
+.custom-navbar{
+    background:#63b58f;
+    padding:14px 40px;
+}
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#0b6b4f!important;
+}
+.nav-link{
+    color:#000!important;
+    font-weight:500;
+}
+.nav-link.active{
+    font-weight:700;
+    text-decoration:underline;
+}
+
+/* ===== HERO ===== */
+.service-hero{
+    min-height:100vh;
+    padding-top:90px;
+    background:url('download (17).jpg') center/cover no-repeat;
+    position:relative;
+}
+.service-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        rgba(0,0,0,.35),
+        rgba(0,0,0,.55)
+    );
+}
+.service-content{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    align-items:center;
+    height:100%;
+    padding:80px;
+    color:#000;
+}
+
+/* LEFT ICON */
+.service-icon{
+    font-size:260px;
+    color:#000;
+    opacity:.85;
+}
+
+/* RIGHT TEXT */
+.service-text h1{
+    font-size:72px;
+    font-weight:800;
+    margin-bottom:30px;
+}
+.service-list{
+    font-size:26px;
+    line-height:1.8;
+}
+.service-list div{
+    margin-bottom:12px;
+}
+
+/* RESPONSIVE */
+@media(max-width:992px){
+    .service-content{
+        grid-template-columns:1fr;
+        text-align:center;
+        padding:40px 25px;
+    }
+    .service-icon{
+        font-size:180px;
+        margin-bottom:30px;
+    }
+    .service-text h1{
+        font-size:48px;
+    }
+    .service-list{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+<div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">ALI</a>
+
+    <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+            <li class="nav-item"><a class="nav-link" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="best-seller.html">Best Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link active" href="service.html">Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+            <li class="nav-item"><a class="nav-link" href="find-store.html">Find Store</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <a class="nav-link" href="#"><i class="bi bi-search"></i>&nbsp;Search</a>
+        <a class="nav-link" href="cart.html"><i class="bi bi-cart3"></i>&nbsp;Cart(0)</a>
+        <a class="nav-link" href="login.html"><i class="bi bi-person-circle"></i>&nbsp;Login</a>
+    </div>
+</div>
+</nav>
+
+<!-- ===== SERVICE HERO ===== -->
+<section class="service-hero">
+    <div class="service-content">
+
+        <!-- LEFT ICON -->
+        <div class="service-icon">
+            <i class="bi bi-people-fill"></i>
+        </div>
+
+        <!-- RIGHT TEXT -->
+        <div class="service-text">
+            <h1>SERVICE</h1>
+
+            <div class="service-list">
+                <div>Complete Peak Equipment Sales</div>
+                <div>Fast & Safe Delivery</div>
+                <div>Secure & Flexible Payment</div>
+                <div>Original Products & Guaranteed</div>
+                <div>Responsive Customer Support</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
